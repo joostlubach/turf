@@ -119,6 +119,11 @@ function createContourLines(
     const upperBand = +breaks[i];
 
     const isobandsCoords = isoBands(matrix, lowerBand, upperBand - lowerBand);
+
+    const validIsobandsCoords = isobandsCoords.filter(coords => {
+      return coords.length > 3
+    });
+    
     // as per GeoJson rules for creating a Polygon, make sure the first element
     // in the array of LinearRings represents the exterior ring (i.e. biggest area),
     // and any subsequent elements represent interior rings (i.e. smaller area);
